@@ -1,0 +1,108 @@
+<div class="container todolist-wrapper">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center">Task Manager</h2>
+    </div>
+    <form class="col">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleInputTitle">Title</label>
+            <input type="text" class="form-control" id="exampleInputTitle"
+                   aria-describedby="emailHelp" placeholder="Title"
+                   [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleInputDescription">Description</label>
+            <input type="text" class="form-control"
+                   id="exampleInputDescription" placeholder="Description"
+                   [(ngModel)]="description" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleInputPriority">Priority</label>
+            <input type="text" class="form-control"
+                   id="exampleInputPriority" placeholder="Priority"
+                   [(ngModel)]="priority" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleInputCategory">Category</label>
+            <input type="text" class="form-control"
+                   id="exampleInputCategory" placeholder="Category"
+                   [(ngModel)]="category" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleInputDate">Date</label>
+            <input type="text" class="form-control"
+                   id="exampleInputDate" placeholder="Date"
+                   [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+
+        <div class="col-2 btn-group-vertical">
+          <button type="button" (click)="addTodo()"
+                  class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="checkbox-group">
+              <input type="checkbox" class="checkbox" id="checkboxSelectAll" [(ngModel)]="selectedAllTodo" (change)="selected()"/>
+              <label class="label-checkbox" for="checkboxSelectAll" [ngClass]="{'checked': selectedAllTodo}">
+                Select All
+                <fa name="square" *ngIf="!selectedAllTodo"></fa>
+                <fa name="check-square" *ngIf="selectedAllTodo"></fa>
+              </label>
+            </th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Category</th>
+            <th scope="col">Date</th>
+            <th scope="col" width="96"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of todoArray; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td class="checkbox-group">
+              <input type="checkbox" id="checkbox{{i + 1}}" class="checkbox" [(ngModel)]="item.completed"/>
+              <label for="checkbox{{i + 1}}" class="label-checkbox" [ngClass]="{'checked': item.completed}">
+                <fa name="square" size="2x" *ngIf="!item.completed"></fa>
+                <fa name="check-square" size="2x" *ngIf="item.completed"></fa>
+              </label>
+            </td>
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.priority}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.date}}</td>
+            <td width="96">
+              <button type="button" class="btn btn-danger" (click)="deleteTodo(i)">
+                delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col text-right">
+          <button (click)="deleteSelected()" class="btn btn-danger">Delete Selected</button>
+        </div>
+      </div>
+    </div> <!-- col -->
+  </div> <!-- row -->
+</div> <!-- container -->

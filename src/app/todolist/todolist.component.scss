@@ -1,0 +1,24 @@
+.todolist-wrapper {
+  margin-top: 50px;
+}
+
+.checkbox-group {
+  position: relative;
+
+  input {
+    &.checkbox {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  .label-checkbox {
+    color: #7e7e7e;
+    cursor: pointer;
+    margin-bottom: 0;
+
+    &.checked {
+      color: green;
+    }
+  }
+}
