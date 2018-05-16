@@ -41,14 +41,14 @@
           <div class="form-group">
             <label for="exampleInputDate">Date</label>
             <input type="text" class="form-control"
-                   id="exampleInputDate" placeholder="Date"
-                   [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
+                   id="exampleInputDate" placeholder="YYYY/MM/DD"
+                   [(ngModel)]="date" [ngModelOptions]="{standalone: true}" mask='9999/99/99' [dropSpecialCharacters]="false">
           </div>
         </div>
 
         <div class="col-2 btn-group-vertical">
           <button type="button" (click)="addTodo()"
-                  class="btn btn-primary">Submit</button>
+                  class="btn btn-primary btn-submit">Submit</button>
         </div>
       </div>
     </form>

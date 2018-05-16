@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { TodolistComponent } from './todolist/todolist.component';
@@ -15,7 +16,8 @@ import { TodolistComponent } from './todolist/todolist.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
