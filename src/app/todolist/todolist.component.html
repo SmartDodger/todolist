@@ -1,7 +1,7 @@
 <div class="container todolist-wrapper">
   <div class="row">
     <div class="col-12">
-      <h2 class="text-center">Task Manager</h2>
+      <h2 class="text-center">Tasks Manager</h2>
     </div>
     <form class="col">
       <div class="row">
@@ -67,16 +67,24 @@
                 <fa name="check-square" *ngIf="selectedAllTodo"></fa>
               </label>
             </th>
-            <th scope="col">Title</th>
+            <th scope="col" class="btn-orderby" [class.active]="order === 'title'" (click)="setOrder('title')">
+              Title
+              <fa name="arrow-up" [hidden]="!reverse"></fa>
+              <fa name="arrow-down" [hidden]="reverse"></fa>
+            </th>
             <th scope="col">Description</th>
             <th scope="col">Priority</th>
             <th scope="col">Category</th>
-            <th scope="col">Date</th>
+            <th scope="col" class="btn-orderby" [class.active]="order === 'date'" (click)="setOrder('date')">
+              Date
+              <fa name="arrow-up" [hidden]="!reverse"></fa>
+              <fa name="arrow-down" [hidden]="reverse"></fa>
+            </th>
             <th scope="col" width="96"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of todoArray; let i = index">
+          <tr *ngFor="let item of todoArray | orderBy: order:reverse:'case-insensitive'; let i = index">
             <th scope="row">{{i + 1}}</th>
             <td class="checkbox-group">
               <input type="checkbox" id="checkbox{{i + 1}}" class="checkbox" [(ngModel)]="item.completed"/>
@@ -91,7 +99,7 @@
             <td>{{item.category}}</td>
             <td>{{item.date}}</td>
             <td width="96">
-              <button type="button" class="btn btn-danger" (click)="deleteTodo(i)">
+              <button type="button" class="btn btn-danger" (click)="deleteTodo(item)">
                 delete
               </button>
             </td>
@@ -100,7 +108,7 @@
       </table>
       <div class="row">
         <div class="col text-right">
-          <button (click)="deleteSelected()" class="btn btn-danger">Delete Selected</button>
+          <button (click)="deleteSelected()" class="btn btn-danger" [hidden]="!(todoArray.length > 0)">Delete Selected</button>
         </div>
       </div>
     </div> <!-- col -->

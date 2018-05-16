@@ -1,3 +1,7 @@
+h2 {
+  margin-bottom: 50px;
+}
+
 .todolist-wrapper {
   margin-top: 50px;
 }
@@ -17,6 +21,10 @@
     cursor: pointer;
     margin-bottom: 0;
 
+    fa {
+      opacity: 1;
+    }
+
     &.checked {
       color: green;
     }
@@ -25,4 +33,20 @@
 
 .btn-submit {
   margin-top: 15px;
+}
+
+.btn-orderby {
+  cursor: pointer;
+}
+
+thead th {
+  fa {
+    opacity: 0;
+  }
+
+  &.active {
+    fa {
+      opacity: 1;
+    }
+  }
 }

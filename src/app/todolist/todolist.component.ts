@@ -15,8 +15,13 @@ export class TodolistComponent implements OnInit {
   public todoArray = [];
   public todoObj: any;
   public selectedAllTodo: boolean;
+  public order: string = '';
+  public reverse: boolean = false;
+  public deleteSingleTodo: boolean;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   addTodo() {
     this.todoObj = {
@@ -25,7 +30,8 @@ export class TodolistComponent implements OnInit {
       priority: this.priority,
       category: this.category,
       date: this.date,
-      completed: false
+      completed: false,
+      deleteSingleTodo: false
     };
     this.todoArray.push(this.todoObj);
     this.title = '';
@@ -35,8 +41,13 @@ export class TodolistComponent implements OnInit {
     this.date = '';
   }
 
-  deleteTodo(index) {
-    this.todoArray.splice(index, 1);
+  deleteTodo(item) {
+    item.deleteSingleTodo = true;
+    for (let i = (this.todoArray.length - 1); i > -1; i--) {
+      if (this.todoArray[i].deleteSingleTodo) {
+        this.todoArray.splice(i, 1);
+      }
+    }
   }
 
   deleteSelected() {
@@ -57,6 +68,14 @@ export class TodolistComponent implements OnInit {
         this.todoArray[i].completed = false;
       }
     }
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
   }
 
   ngOnInit() {
