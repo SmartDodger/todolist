@@ -34,11 +34,7 @@ export class TodolistComponent implements OnInit {
       deleteSingleTodo: false
     };
     this.todoArray.push(this.todoObj);
-    this.title = '';
-    this.description = '';
-    this.priority = '';
-    this.category = '';
-    this.date = '';
+    this.title = this.description = this.priority = this.category = this.date = '';
   }
 
   deleteTodo(item) {
